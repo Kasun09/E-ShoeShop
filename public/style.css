@@ -469,6 +469,76 @@ body {
     transform: scale(1.05);
 }
 
+/* Cart modal row styling */
+.cart-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.cart-thumb img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-name {
+    font-weight: 700;
+}
+
+.cart-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+}
+
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.cart-price {
+    font-weight: 800;
+}
+
+.cart-qty {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cart-qty .qty-btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.cart-sub {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
 .tab.active,
 .tab:hover {
     background: var(--accent-color);
@@ -669,15 +739,19 @@ body {
 }
 
 .modal-content {
-    background: var(--secondary-bg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
     width: 90%;
-    max-width: 900px;
-    padding: 40px;
+    max-width: 980px;
+    padding: 24px;
     position: relative;
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    animation: modalSlideUp 0.4s ease;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    animation: modalSlideUp 0.35s cubic-bezier(.2, .9, .2, 1);
     color: var(--text-light);
+    box-shadow: 0 40px 120px rgba(2, 6, 23, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes modalSlideUp {
@@ -694,28 +768,33 @@ body {
 
 .modal-body {
     display: flex;
-    gap: 40px;
+    gap: 28px;
+    width: 100%;
+    align-items: stretch;
 }
 
 .modal-img {
     flex: 1;
-    background: var(--tertiary-bg);
-    border-radius: 15px;
+    background: linear-gradient(180deg, var(--tertiary-bg), rgba(30, 41, 59, 0.9));
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .modal-img img {
     max-width: 100%;
     height: auto;
+    display: block;
+    border-radius: 10px;
 }
 
 .modal-info {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .close-modal {
@@ -731,6 +810,25 @@ body {
 
 .close-modal:hover {
     color: var(--accent-color);
+}
+
+/* make modal centered and responsive */
+@media (max-width: 880px) {
+    .modal-content {
+        max-width: 92%;
+        padding: 18px;
+    }
+
+    .modal-body {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .modal-img img {
+        height: 260px;
+        width: 100%;
+        object-fit: cover;
+    }
 }
 
 /* =============================================

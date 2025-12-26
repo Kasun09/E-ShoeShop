@@ -98,9 +98,14 @@ function renderProducts(filter = 'all') {
             </div>
         `;
         grid.appendChild(card);
-        // ensure click works even if inline onclick fails: attach listener
+        // ensure click works even if inline onclick fails: attach listener to image
         const imgCont = card.querySelector('.card-img-container');
         if (imgCont) imgCont.addEventListener('click', () => openProductDetail(product.id));
+        // make whole card clickable except when clicking interactive controls (fav button, other buttons)
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.fav-btn') || e.target.closest('button')) return; // ignore clicks on buttons
+            openProductDetail(product.id);
+        });
     });
     if (window.lucide) lucide.createIcons();
 }
@@ -125,6 +130,11 @@ function createProductCard(product) {
     // ensure click works when using this helper
     const imgCont = card.querySelector('.card-img-container');
     if (imgCont) imgCont.addEventListener('click', () => openProductDetail(product.id));
+    // make whole card clickable except when clicking interactive controls (fav button, other buttons)
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('.fav-btn') || e.target.closest('button')) return;
+        openProductDetail(product.id);
+    });
     return card;
 }
 
@@ -201,7 +211,7 @@ function toggleFavoriteById(id) {
 }
 
 // ===== MODAL FUNCTIONS =====
-const modal = document.getElementById('product-modal');
+let modal = null; // will be set on window load (modal markup appears after script tag)
 
 let currentProductId = null;
 let selectedSize = null;
@@ -270,17 +280,7 @@ function openProductDetail(productId) {
     modal.style.display = 'block';
 }
 
-const closeModal = document.querySelector('.close-modal');
-if (closeModal) {
-    closeModal.onclick = () => modal.style.display = 'none';
-}
-
-// close modal on outside click
-if (modal) {
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
-}
+// modal handlers are attached on window.load after modal exists in DOM
 
 // ===== CART FUNCTIONALITY =====
 let cartCount = 0;
@@ -347,7 +347,7 @@ function renderCart() {
             </div>
             <div class="cart-details">
                 <div class="cart-name">${it.name}</div>
-                <div class="cart-meta">${it.size ? 'Size: '+it.size : ''}${it.size && it.color ? ' • ' : ''}${it.color ? 'Color: '+it.color : ''}</div>
+                <div class="cart-meta">${it.size ? 'Size: ' + it.size : ''}${it.size && it.color ? ' • ' : ''}${it.color ? 'Color: ' + it.color : ''}</div>
             </div>
             <div class="cart-actions">
                 <div class="cart-price">$${(it.price).toFixed(2)}</div>
@@ -356,7 +356,7 @@ function renderCart() {
                     <span class="qty-num">${it.qty}</span>
                     <button class="qty-btn" data-idx="${idx}" data-delta="1">+</button>
                 </div>
-                <div class="cart-sub">$${((it.price||0) * (it.qty||1)).toFixed(2)}</div>
+                <div class="cart-sub">$${((it.price || 0) * (it.qty || 1)).toFixed(2)}</div>
                 <button class="remove-btn" data-idx="${idx}">Remove</button>
             </div>
         `;
@@ -494,6 +494,13 @@ if (window.lucide) {
 }
 
 window.addEventListener('load', () => {
+    // initialize modal reference now that DOM is loaded
+    modal = document.getElementById('product-modal');
+    if (modal) {
+        const closeModalEl = modal.querySelector('.close-modal');
+        if (closeModalEl) closeModalEl.onclick = () => modal.style.display = 'none';
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+    }
     // If a category query is present (from Explore links), apply it
     const params = new URLSearchParams(window.location.search);
     const cat = params.get('cat');
