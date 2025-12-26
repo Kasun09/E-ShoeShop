@@ -1,20 +1,20 @@
 // ===== PRODUCT DATA =====
 const products = [
-    { id: 1, name: "Air Nitro Red", category: "men", price: 160, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" },
-    { id: 2, name: "Cloudfoam Lifestyle", category: "women", price: 120, img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600" },
+    { id: 1, name: "Air Nitro Red", category: "men", price: 160, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600", featured: true, salePrice: 129 },
+    { id: 2, name: "Cloudfoam Lifestyle", category: "women", price: 120, img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600", featured: true },
     { id: 3, name: "Street Retro High", category: "child", price: 90, img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600" },
-    { id: 4, name: "Minimalist Pure White", category: "men", price: 110, img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600" },
+    { id: 4, name: "Minimalist Pure White", category: "men", price: 110, img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600", featured: true },
     { id: 5, name: "Midnight Stealth", category: "men", price: 195, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" },
     { id: 6, name: "Zenith Runner", category: "women", price: 140, img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600" },
     { id: 7, name: "Urban Edge", category: "women", price: 130, img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1?w=600" },
     { id: 8, name: "Junior Spark", category: "child", price: 65, img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" },
-    { id: 9, name: "Velocity Pro", category: "men", price: 175, img: "https://images.unsplash.com/photo-1520975913670-6f8b4a4f7c8f?w=600" },
+    { id: 9, name: "Velocity Pro", category: "men", price: 175, img: "https://images.unsplash.com/photo-1520975913670-6f8b4a4f7c8f?w=600", salePrice: 149 },
     { id: 10, name: "Luxe Court", category: "women", price: 150, img: "https://images.unsplash.com/photo-1536305030019-3d91e7e84a2a?w=600" },
     { id: 11, name: "Trail Seeker", category: "men", price: 170, img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" },
     { id: 12, name: "Breeze Slip-On", category: "women", price: 95, img: "https://images.unsplash.com/photo-1523381218650-83d6b0b1d6b1?w=600" },
     { id: 13, name: "Mini Runner", category: "child", price: 55, img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=600" },
     { id: 14, name: "Court Classic", category: "men", price: 125, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" },
-    { id: 15, name: "Floral Daydream", category: "women", price: 110, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" },
+    { id: 15, name: "Floral Daydream", category: "women", price: 110, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600", featured: true, salePrice: 85 },
     { id: 16, name: "Playtime Pro", category: "child", price: 70, img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=600" }
 ];
 
@@ -88,17 +88,54 @@ function renderProducts(filter = 'all') {
             <button class="fav-btn" onclick="toggleFavorite(this, ${product.id})">
                 <i data-lucide="heart"></i>
             </button>
-            <div class="card-img-container" onclick="openProductDetail('${product.name}', '$${product.price}', '${product.img}')">
+            <div class="card-img-container" onclick="openProductDetail(${product.id})">
                 <img src="${product.img}" alt="${product.name}">
             </div>
             <div class="product-info">
                 <p>${product.category.toUpperCase()}</p>
                 <h4>${product.name}</h4>
-                <span class="price">$${product.price}</span>
+                <span class="price">${product.salePrice ? `<span class=\"sale\">$${product.salePrice}</span> <del>$${product.price}</del>` : `$${product.price}`}</span>
             </div>
         `;
         grid.appendChild(card);
     });
+    if (window.lucide) lucide.createIcons();
+}
+
+// helper to create a product card element (used for multiple grids)
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+        <button class="fav-btn" onclick="toggleFavorite(this, ${product.id})">
+            <i data-lucide="heart"></i>
+        </button>
+        <div class="card-img-container" onclick="openProductDetail(${product.id})">
+            <img src="${product.img}" alt="${product.name}">
+        </div>
+        <div class="product-info">
+            <p>${product.category.toUpperCase()}</p>
+            <h4>${product.name}</h4>
+            <span class="price">${product.salePrice ? `<span class=\\"sale\\">$${product.salePrice}</span> <del>$${product.price}</del>` : `$${product.price}`}</span>
+        </div>
+    `;
+    return card;
+}
+
+// Render featured / discounted items on the homepage only
+function renderHomeFeatured() {
+    const collectionGrid = document.getElementById('product-grid');
+    const arrivalsGrid = document.getElementById('new-arrivals-grid');
+    const featured = products.filter(p => p.featured || p.salePrice).slice(0, 6);
+
+    if (collectionGrid) {
+        collectionGrid.innerHTML = '';
+        featured.forEach(p => collectionGrid.appendChild(createProductCard(p)));
+    }
+    if (arrivalsGrid) {
+        arrivalsGrid.innerHTML = '';
+        featured.forEach(p => arrivalsGrid.appendChild(createProductCard(p)));
+    }
     if (window.lucide) lucide.createIcons();
 }
 
@@ -137,21 +174,69 @@ function filterProducts(cat) {
 function toggleFavorite(btn, id) {
     btn.classList.toggle('active');
     if (btn.classList.contains('active')) {
-        favorites.push(id);
-        console.log("Favorites List:", favorites);
+        if (!favorites.includes(id)) favorites.push(id);
     } else {
         favorites = favorites.filter(favId => favId !== id);
     }
 }
 
+function toggleFavoriteById(id) {
+    if (!favorites.includes(id)) favorites.push(id);
+    else favorites = favorites.filter(favId => favId !== id);
+    // update any fav buttons on page
+    document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('.fav-btn');
+        const onclick = btn ? btn.getAttribute('onclick') : null;
+        if (onclick && onclick.includes(`${id}`)) {
+            if (favorites.includes(id)) btn.classList.add('active');
+            else btn.classList.remove('active');
+        }
+    });
+}
+
 // ===== MODAL FUNCTIONS =====
 const modal = document.getElementById('product-modal');
 
-function openProductDetail(productName, price, imagePath) {
-    if (!modal) return;
-    document.getElementById('modal-title').innerText = productName;
-    document.getElementById('modal-price').innerText = price;
-    document.getElementById('modal-image').src = imagePath;
+let currentProductId = null;
+let selectedSize = null;
+
+function openProductDetail(productId) {
+    const prod = products.find(p => p.id === productId);
+    if (!prod || !modal) return;
+    currentProductId = productId;
+    selectedSize = null;
+    document.getElementById('modal-title').innerText = prod.name;
+    const priceEl = document.getElementById('modal-price');
+    if (prod.salePrice) {
+        priceEl.innerHTML = `<span class="sale">$${prod.salePrice}</span> <del>$${prod.price}</del>`;
+    } else {
+        priceEl.innerText = `$${prod.price}`;
+    }
+    document.getElementById('modal-image').src = prod.img;
+
+    // sizes: mark none selected
+    const sizeBtns = modal.querySelectorAll('.sizes button');
+    sizeBtns.forEach(b => {
+        b.classList.remove('active');
+        b.onclick = () => {
+            sizeBtns.forEach(x => x.classList.remove('active'));
+            b.classList.add('active');
+            selectedSize = b.innerText;
+        };
+    });
+
+    // wishlist button in modal
+    const wishlistBtn = modal.querySelector('.wishlist');
+    if (wishlistBtn) {
+        wishlistBtn.onclick = (e) => {
+            e.stopPropagation();
+            toggleFavoriteById(currentProductId);
+            wishlistBtn.classList.toggle('active');
+        };
+        wishlistBtn.classList.toggle('active', favorites.includes(currentProductId));
+    }
+
+    // show modal
     modal.style.display = 'block';
 }
 
@@ -160,17 +245,16 @@ if (closeModal) {
     closeModal.onclick = () => modal.style.display = 'none';
 }
 
+// close modal on outside click
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+}
+
 // ===== CART FUNCTIONALITY =====
 let cartCount = 0;
-const addToCartBtn = document.querySelector('.add-to-cart');
-if (addToCartBtn) {
-    addToCartBtn.onclick = () => {
-        cartCount++;
-        document.getElementById('cart-count').innerText = cartCount;
-        alert("Added to cart!");
-        modal.style.display = 'none';
-    };
-}
+
 
 function addToCart(e) {
     e.stopPropagation();
@@ -292,7 +376,11 @@ window.addEventListener('load', () => {
     // If a category query is present (from Explore links), apply it
     const params = new URLSearchParams(window.location.search);
     const cat = params.get('cat');
-    if (cat && (cat === 'men' || cat === 'women' || cat === 'child')) {
+    const path = window.location.pathname.toLowerCase();
+    const isIndex = path.endsWith('/') || path.endsWith('/index.html') || path.includes('index.html');
+    if (isIndex) {
+        renderHomeFeatured();
+    } else if (cat && (cat === 'men' || cat === 'women' || cat === 'child')) {
         filterProducts(cat);
     } else {
         renderProducts('all');
@@ -302,11 +390,14 @@ window.addEventListener('load', () => {
     // Bind add-to-cart inside modal (ensure binding works on both pages)
     const addToCartBtnLocal = document.querySelector('.add-to-cart');
     if (addToCartBtnLocal) {
-        addToCartBtnLocal.onclick = () => {
+        addToCartBtnLocal.onclick = (e) => {
+            e.stopPropagation();
+            if (!currentProductId) return alert('No product selected.');
+            const prod = products.find(p => p.id === currentProductId);
             cartCount++;
             const cartCountEl = document.getElementById('cart-count');
             if (cartCountEl) cartCountEl.innerText = cartCount;
-            alert('Added to cart!');
+            alert(`Added to cart: ${prod.name}${selectedSize ? ' (Size ' + selectedSize + ')' : ''}`);
             const modalEl = document.getElementById('product-modal');
             if (modalEl) modalEl.style.display = 'none';
         };
