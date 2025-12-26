@@ -1,21 +1,21 @@
 // ===== PRODUCT DATA =====
 const products = [
-    { id: 1, name: "Air Nitro Red", category: "men", price: 160, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600", featured: true, salePrice: 129 },
-    { id: 2, name: "Cloudfoam Lifestyle", category: "women", price: 120, img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600", featured: true },
-    { id: 3, name: "Street Retro High", category: "child", price: 90, img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600" },
-    { id: 4, name: "Minimalist Pure White", category: "men", price: 110, img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600", featured: true },
-    { id: 5, name: "Midnight Stealth", category: "men", price: 195, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" },
-    { id: 6, name: "Zenith Runner", category: "women", price: 140, img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600" },
-    { id: 7, name: "Urban Edge", category: "women", price: 130, img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1?w=600" },
-    { id: 8, name: "Junior Spark", category: "child", price: 65, img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" },
-    { id: 9, name: "Velocity Pro", category: "men", price: 175, img: "https://images.unsplash.com/photo-1520975913670-6f8b4a4f7c8f?w=600", salePrice: 149 },
-    { id: 10, name: "Luxe Court", category: "women", price: 150, img: "https://images.unsplash.com/photo-1536305030019-3d91e7e84a2a?w=600" },
-    { id: 11, name: "Trail Seeker", category: "men", price: 170, img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" },
-    { id: 12, name: "Breeze Slip-On", category: "women", price: 95, img: "https://images.unsplash.com/photo-1523381218650-83d6b0b1d6b1?w=600" },
-    { id: 13, name: "Mini Runner", category: "child", price: 55, img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=600" },
-    { id: 14, name: "Court Classic", category: "men", price: 125, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" },
-    { id: 15, name: "Floral Daydream", category: "women", price: 110, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600", featured: true, salePrice: 85 },
-    { id: 16, name: "Playtime Pro", category: "child", price: 70, img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=600" }
+    { id: 1, name: "Air Nitro Red", category: "men", price: 160, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600", featured: true, salePrice: 129, sizes: [8, 9, 10, 11], colors: [{ name: 'Black', hex: '#111827' }, { name: 'Red', hex: '#ef4444' }] },
+    { id: 2, name: "Cloudfoam Lifestyle", category: "women", price: 120, img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600", featured: true, sizes: [6, 7, 8, 9], colors: [{ name: 'White', hex: '#f8fafc' }, { name: 'Blue', hex: '#3b82f6' }] },
+    { id: 3, name: "Street Retro High", category: "child", price: 90, img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600", sizes: [1, 2, 3, 4], colors: [{ name: 'Grey', hex: '#64748b' }] },
+    { id: 4, name: "Minimalist Pure White", category: "men", price: 110, img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600", featured: true, sizes: [8, 9, 10, 11], colors: [{ name: 'White', hex: '#f8fafc' }] },
+    { id: 5, name: "Midnight Stealth", category: "men", price: 195, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600", sizes: [8, 9, 10, 11], colors: [{ name: 'Black', hex: '#0f172a' }] },
+    { id: 6, name: "Zenith Runner", category: "women", price: 140, img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600", sizes: [6, 7, 8, 9], colors: [{ name: 'Pink', hex: '#fda4af' }, { name: 'Black', hex: '#111827' }] },
+    { id: 7, name: "Urban Edge", category: "women", price: 130, img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1?w=600", sizes: [6, 7, 8, 9], colors: [{ name: 'Brown', hex: '#7c3aed' }] },
+    { id: 8, name: "Junior Spark", category: "child", price: 65, img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600", sizes: [1, 2, 3, 4], colors: [{ name: 'Blue', hex: '#60a5fa' }] },
+    { id: 9, name: "Velocity Pro", category: "men", price: 175, img: "https://images.unsplash.com/photo-1520975913670-6f8b4a4f7c8f?w=600", salePrice: 149, sizes: [8, 9, 10, 11], colors: [{ name: 'Black', hex: '#000000' }, { name: 'Green', hex: '#10b981' }] },
+    { id: 10, name: "Luxe Court", category: "women", price: 150, img: "https://images.unsplash.com/photo-1536305030019-3d91e7e84a2a?w=600", sizes: [6, 7, 8, 9], colors: [{ name: 'White', hex: '#f8fafc' }] },
+    { id: 11, name: "Trail Seeker", category: "men", price: 170, img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600", sizes: [8, 9, 10, 11], colors: [{ name: 'Olive', hex: '#6b7280' }] },
+    { id: 12, name: "Breeze Slip-On", category: "women", price: 95, img: "https://images.unsplash.com/photo-1523381218650-83d6b0b1d6b1?w=600", sizes: [6, 7, 8, 9], colors: [{ name: 'Tan', hex: '#f59e0b' }] },
+    { id: 13, name: "Mini Runner", category: "child", price: 55, img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=600", sizes: [1, 2, 3, 4], colors: [{ name: 'Yellow', hex: '#facc15' }] },
+    { id: 14, name: "Court Classic", category: "men", price: 125, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600", sizes: [8, 9, 10, 11], colors: [{ name: 'White', hex: '#f8fafc' }, { name: 'Black', hex: '#111827' }] },
+    { id: 15, name: "Floral Daydream", category: "women", price: 110, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600", featured: true, salePrice: 85, sizes: [6, 7, 8, 9], colors: [{ name: 'Floral', hex: '#fb7185' }] },
+    { id: 16, name: "Playtime Pro", category: "child", price: 70, img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=600", sizes: [1, 2, 3, 4], colors: [{ name: 'Blue', hex: '#60a5fa' }, { name: 'Red', hex: '#ef4444' }] }
 ];
 
 // ===== SLIDER VARIABLES =====
@@ -98,6 +98,9 @@ function renderProducts(filter = 'all') {
             </div>
         `;
         grid.appendChild(card);
+        // ensure click works even if inline onclick fails: attach listener
+        const imgCont = card.querySelector('.card-img-container');
+        if (imgCont) imgCont.addEventListener('click', () => openProductDetail(product.id));
     });
     if (window.lucide) lucide.createIcons();
 }
@@ -119,6 +122,9 @@ function createProductCard(product) {
             <span class="price">${product.salePrice ? `<span class=\\"sale\\">$${product.salePrice}</span> <del>$${product.price}</del>` : `$${product.price}`}</span>
         </div>
     `;
+    // ensure click works when using this helper
+    const imgCont = card.querySelector('.card-img-container');
+    if (imgCont) imgCont.addEventListener('click', () => openProductDetail(product.id));
     return card;
 }
 
@@ -199,6 +205,7 @@ const modal = document.getElementById('product-modal');
 
 let currentProductId = null;
 let selectedSize = null;
+let selectedColor = null;
 
 function openProductDetail(productId) {
     const prod = products.find(p => p.id === productId);
@@ -214,15 +221,38 @@ function openProductDetail(productId) {
     }
     document.getElementById('modal-image').src = prod.img;
 
-    // sizes: mark none selected
-    const sizeBtns = modal.querySelectorAll('.sizes button');
-    sizeBtns.forEach(b => {
-        b.classList.remove('active');
-        b.onclick = () => {
-            sizeBtns.forEach(x => x.classList.remove('active'));
+    // Render sizes dynamically
+    const sizesContainer = modal.querySelector('.sizes');
+    sizesContainer.innerHTML = '<span>Size:</span>';
+    const sizes = prod.sizes || [7, 8, 9, 10];
+    sizes.forEach(sz => {
+        const b = document.createElement('button');
+        b.innerText = sz;
+        b.onclick = (e) => {
+            e.stopPropagation();
+            selectedSize = sz;
+            sizesContainer.querySelectorAll('button').forEach(x => x.classList.remove('active'));
             b.classList.add('active');
-            selectedSize = b.innerText;
         };
+        sizesContainer.appendChild(b);
+    });
+
+    // Render colors dynamically
+    const colorsContainer = modal.querySelector('.colors');
+    colorsContainer.innerHTML = '<span>Color:</span>';
+    const colors = prod.colors || [{ name: 'Standard', hex: '#94a3b8' }];
+    colors.forEach(c => {
+        const sw = document.createElement('span');
+        sw.className = 'color-swatch';
+        sw.title = c.name || c;
+        sw.style.background = c.hex || c;
+        sw.onclick = (e) => {
+            e.stopPropagation();
+            selectedColor = c.name || c;
+            colorsContainer.querySelectorAll('.color-swatch').forEach(x => x.classList.remove('active'));
+            sw.classList.add('active');
+        };
+        colorsContainer.appendChild(sw);
     });
 
     // wishlist button in modal
@@ -254,6 +284,97 @@ if (modal) {
 
 // ===== CART FUNCTIONALITY =====
 let cartCount = 0;
+
+// ===== CART MODEL =====
+let cart = [];
+
+function loadCart() {
+    try {
+        const raw = localStorage.getItem('cart_v1');
+        cart = raw ? JSON.parse(raw) : [];
+    } catch (e) { cart = []; }
+    cartCount = cart.reduce((s, it) => s + (it.qty || 0), 0);
+    const cEl = document.getElementById('cart-count');
+    if (cEl) cEl.innerText = cartCount;
+}
+
+function saveCart() {
+    localStorage.setItem('cart_v1', JSON.stringify(cart));
+    cartCount = cart.reduce((s, it) => s + (it.qty || 0), 0);
+    const cEl = document.getElementById('cart-count');
+    if (cEl) cEl.innerText = cartCount;
+}
+
+function addToCartItem(productId, size, color, qty = 1) {
+    const prod = products.find(p => p.id === productId);
+    if (!prod) return;
+    // merge identical item (same id, size, color)
+    const existing = cart.find(it => it.id === productId && (it.size || '') == (size || '') && (it.color || '') == (color || ''));
+    if (existing) existing.qty += qty;
+    else cart.push({ id: productId, name: prod.name, price: prod.salePrice || prod.price, size: size || null, color: color || null, qty });
+    saveCart();
+    renderCart();
+}
+
+function removeCartItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    renderCart();
+}
+
+function changeCartQty(index, delta) {
+    if (!cart[index]) return;
+    cart[index].qty = Math.max(1, cart[index].qty + delta);
+    saveCart();
+    renderCart();
+}
+
+function renderCart() {
+    const cartModal = document.getElementById('cart-modal');
+    const itemsEl = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    if (!itemsEl || !totalEl) return;
+    itemsEl.innerHTML = '';
+    let total = 0;
+    cart.forEach((it, idx) => {
+        total += (it.price || 0) * (it.qty || 1);
+        const prod = products.find(p => p.id === it.id) || {};
+        const row = document.createElement('div');
+        row.className = 'cart-row';
+        row.innerHTML = `
+            <div class="cart-thumb">
+                <img src="${prod.img || ''}" alt="${it.name}">
+            </div>
+            <div class="cart-details">
+                <div class="cart-name">${it.name}</div>
+                <div class="cart-meta">${it.size ? 'Size: '+it.size : ''}${it.size && it.color ? ' • ' : ''}${it.color ? 'Color: '+it.color : ''}</div>
+            </div>
+            <div class="cart-actions">
+                <div class="cart-price">$${(it.price).toFixed(2)}</div>
+                <div class="cart-qty">
+                    <button class="qty-btn" data-idx="${idx}" data-delta="-1">-</button>
+                    <span class="qty-num">${it.qty}</span>
+                    <button class="qty-btn" data-idx="${idx}" data-delta="1">+</button>
+                </div>
+                <div class="cart-sub">$${((it.price||0) * (it.qty||1)).toFixed(2)}</div>
+                <button class="remove-btn" data-idx="${idx}">Remove</button>
+            </div>
+        `;
+        itemsEl.appendChild(row);
+    });
+    totalEl.innerText = `$${total.toFixed(2)}`;
+
+    // wire qty/remove buttons
+    itemsEl.querySelectorAll('.qty-btn').forEach(b => {
+        b.addEventListener('click', () => changeCartQty(Number(b.dataset.idx), Number(b.dataset.delta)));
+    });
+    itemsEl.querySelectorAll('.remove-btn').forEach(b => {
+        b.addEventListener('click', () => removeCartItem(Number(b.dataset.idx)));
+    });
+
+    const cartCountEl = document.getElementById('cart-count');
+    if (cartCountEl) cartCountEl.innerText = cart.reduce((s, it) => s + (it.qty || 0), 0);
+}
 
 
 function addToCart(e) {
@@ -393,13 +514,34 @@ window.addEventListener('load', () => {
         addToCartBtnLocal.onclick = (e) => {
             e.stopPropagation();
             if (!currentProductId) return alert('No product selected.');
+            addToCartItem(currentProductId, selectedSize, selectedColor, 1);
             const prod = products.find(p => p.id === currentProductId);
-            cartCount++;
-            const cartCountEl = document.getElementById('cart-count');
-            if (cartCountEl) cartCountEl.innerText = cartCount;
-            alert(`Added to cart: ${prod.name}${selectedSize ? ' (Size ' + selectedSize + ')' : ''}`);
+            alert(`Added to cart: ${prod.name}${selectedSize ? ' (Size ' + selectedSize + ')' : ''}${selectedColor ? ' - ' + selectedColor : ''}`);
             const modalEl = document.getElementById('product-modal');
             if (modalEl) modalEl.style.display = 'none';
         };
     }
+    // bind cart icon to open cart modal
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartModal = document.getElementById('cart-modal');
+    const closeCart = document.getElementById('close-cart');
+    const clearCartBtn = document.getElementById('clear-cart');
+    const checkoutBtn = document.getElementById('checkout');
+
+    if (cartIcon && cartModal) {
+        cartIcon.addEventListener('click', () => {
+            renderCart();
+            cartModal.style.display = 'flex';
+        });
+    }
+    if (closeCart && cartModal) closeCart.onclick = () => cartModal.style.display = 'none';
+    if (clearCartBtn) clearCartBtn.addEventListener('click', () => { cart = []; saveCart(); renderCart(); });
+    if (checkoutBtn) checkoutBtn.addEventListener('click', () => { alert('Checkout not implemented — this is a demo.'); });
+
+    // close cart when clicking outside
+    if (cartModal) cartModal.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.style.display = 'none'; });
+
+    // load saved cart
+    loadCart();
+    renderCart();
 });
