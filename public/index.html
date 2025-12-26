@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB-Shoes | Premium Footwear</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="nav-center">
+            <h1 class="logo"></h1>
+        </div>
+
+        <div class="nav-right">
+
+
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <i data-lucide="search"></i>
+            </div>
+
+            <i data-lucide="user" title="Login/Signup"></i>
+            <i data-lucide="heart" title="Favorites"></i>
+
+            <div class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="slider-container">
+            <div class="slide active">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1920&q=80"
+                    alt="Red Nitro">
+                <div class="hero-content">
+                    <span class="badge">Best Seller</span>
+                    <h2>Red Nitro<br>Running</h2>
+                    <p>Engineered for speed, designed for comfort. Feel the adrenaline with every step.</p>
+                    <a href="shop.html" class="btn-shop-link">Shop Now</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=1920&q=80"
+                    alt="Cloudflyer">
+                <div class="hero-content">
+                    <span class="badge">New Arrival</span>
+                    <h2>Cloudfoam<br>Lifestyle</h2>
+                    <p>Walk on clouds. Our specialized foam technology provides all-day support.</p>
+                    <a href="shop.html" class="btn-shop-link">Shop Now</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=1920&q=80"
+                    alt="Street Retro">
+                <div class="hero-content">
+                    <span class="badge">Classic Style</span>
+                    <h2>Street Retro<br>High</h2>
+                    <p>The 90s are back. Iconic high-top design paired with modern durability.</p>
+                    <a href="shop.html" class="btn-shop-link">Shop Now</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1920&q=80"
+                    alt="Pure White">
+                <div class="hero-content">
+                    <span class="badge">Limited Edition</span>
+                    <h2>Minimalist<br>Pure White</h2>
+                    <p>Simple. Clean. Elegant. The perfect sneaker for any occasion.</p>
+                    <a href="shop.html" class="btn-shop-link">Shop Now</a>
+                </div>
+            </div>
+
+            <button class="nav-arrow prev" onclick="changeSlide(-1)">
+                <i data-lucide="chevron-left"></i>
+            </button>
+            <button class="nav-arrow next" onclick="changeSlide(1)">
+                <i data-lucide="chevron-right"></i>
+            </button>
+
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </header>
+    <section class="categories-section">
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=800&q=80"
+                alt="Men">
+            <div class="category-overlay">
+                <h3>MEN</h3>
+                <button class="btn-outline">Explore</button>
+            </div>
+        </div>
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80"
+                alt="Women">
+            <div class="category-overlay">
+                <h3>WOMEN</h3>
+                <button class="btn-outline">Explore</button>
+            </div>
+        </div>
+        <div class="category-card">
+            <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=80"
+                alt="Children">
+            <div class="category-overlay">
+                <h3>CHILDREN</h3>
+                <button class="btn-outline">Explore</button>
+            </div>
+        </div>
+    </section>
+    <section class="collection-section">
+        <div class="section-header">
+            <h2>Our Collection</h2>
+            <div class="filter-tabs">
+                <button class="tab active" onclick="filterProducts('all')">All</button>
+                <button class="tab" onclick="filterProducts('men')">Men</button>
+                <button class="tab" onclick="filterProducts('women')">Women</button>
+                <button class="tab" onclick="filterProducts('child')">Children</button>
+            </div>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+        </div>
+    </section>
+
+    <section class="products">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid" id="product-grid">
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Signup & Save</h2>
+        <p>Get 15% off your first order by joining our community.</p>
+        <div class="sub-box">
+            <input type="email" placeholder="Enter your email">
+            <button>Join</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h2 class="logo">KB-Shoes</h2>
+                <p>Premium quality shoes for every step of your journey.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#">New Arrivals</a>
+                <a href="#">Best Sellers</a>
+                <a href="#">Sale</a>
+            </div>
+            <div class="footer-col">
+                <h4>Policies</h4>
+                <a href="#">Returns</a>
+                <a href="#">Shipping</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-col">
+                <h4>Socials</h4>
+                <div class="social-icons">
+                    <i data-lucide="instagram"></i>
+                    <i data-lucide="facebook"></i>
+                    <i data-lucide="twitter"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img"><img id="modal-image" src="" alt=""></div>
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-price"></p>
+                    <div class="sizes">
+                        <span>Size:</span>
+                        <button>7</button><button>8</button><button>9</button><button>10</button>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <button class="wishlist"><i data-lucide="heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

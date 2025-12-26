@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KB-Shoes | Premium Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="nav-center">
+            <h1 class="logo">KB-Shoes</h1>
+        </div>
+
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="text" placeholder="Search...">
+                <i data-lucide="search"></i>
+            </div>
+
+            <i data-lucide="user" title="Login/Signup"></i>
+            <i data-lucide="heart" title="Favorites"></i>
+
+            <div class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding: 80px 5%; display: flex; flex-direction: row-reverse; gap: 40px; align-items: flex-start;">
+        <!-- Right Sidebar - Categories -->
+        <aside style="width: 100%; max-width: 300px; position: sticky; top: 100px;">
+            <div
+                style="background: linear-gradient(135deg, var(--secondary-bg) 0%, var(--tertiary-bg) 100%); padding: 30px; border-radius: 15px; border: 1px solid var(--border-color);">
+                <div style="margin-bottom: 40px;">
+                    <h3
+                        style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; color: var(--accent-color);">
+                        Shop by Category</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;" id="categoryButtons">
+                        <button onclick="filterCategory('all')" class="cat-btn bubble-btn active" id="btn-all">All
+                            Release</button>
+                        <button onclick="filterCategory('men')" class="cat-btn bubble-btn" id="btn-men">Men's
+                            Pro</button>
+                        <button onclick="filterCategory('women')" class="cat-btn bubble-btn" id="btn-women">Women's
+                            Lux</button>
+                        <button onclick="filterCategory('child')" class="cat-btn bubble-btn" id="btn-child">Kids'
+                            Series</button>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-color); padding-top: 30px;">
+                    <h3
+                        style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 20px; color: var(--accent-color);">
+                        Price Range</h3>
+                    <input type="range" min="40" max="300" value="300"
+                        style="width: 100%; height: 6px; border-radius: 5px; appearance: none; cursor: pointer; background: linear-gradient(to right, var(--accent-color) 0%, var(--accent-color) var(--value), var(--tertiary-bg) var(--value), var(--tertiary-bg) 100%);"
+                        id="priceRange">
+                    <div
+                        style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.9rem; font-weight: 600;">
+                        <span style="color: var(--text-muted);">$40</span>
+                        <span style="color: var(--accent-color); font-size: 1.1rem;">$<span
+                                id="priceLabel">300</span></span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Left Main Content -->
+        <main style="flex: 1; min-width: 0;">
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px;">
+                <div>
+                    <h1 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.05em; color: var(--text-light); margin-bottom: 10px;"
+                        id="categoryTitle">All Collections</h1>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;" id="itemCount">Loading catalog...</p>
+                </div>
+            </div>
+
+            <div id="productGrid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px;">
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
