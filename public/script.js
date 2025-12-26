@@ -7,7 +7,15 @@ const products = [
     { id: 5, name: "Midnight Stealth", category: "men", price: 195, img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" },
     { id: 6, name: "Zenith Runner", category: "women", price: 140, img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600" },
     { id: 7, name: "Urban Edge", category: "women", price: 130, img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1?w=600" },
-    { id: 8, name: "Junior Spark", category: "child", price: 65, img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" }
+    { id: 8, name: "Junior Spark", category: "child", price: 65, img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600" },
+    { id: 9, name: "Velocity Pro", category: "men", price: 175, img: "https://images.unsplash.com/photo-1520975913670-6f8b4a4f7c8f?w=600" },
+    { id: 10, name: "Luxe Court", category: "women", price: 150, img: "https://images.unsplash.com/photo-1536305030019-3d91e7e84a2a?w=600" },
+    { id: 11, name: "Trail Seeker", category: "men", price: 170, img: "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?w=600" },
+    { id: 12, name: "Breeze Slip-On", category: "women", price: 95, img: "https://images.unsplash.com/photo-1523381218650-83d6b0b1d6b1?w=600" },
+    { id: 13, name: "Mini Runner", category: "child", price: 55, img: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=600" },
+    { id: 14, name: "Court Classic", category: "men", price: 125, img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600" },
+    { id: 15, name: "Floral Daydream", category: "women", price: 110, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600" },
+    { id: 16, name: "Playtime Pro", category: "child", price: 70, img: "https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?w=600" }
 ];
 
 // ===== SLIDER VARIABLES =====
@@ -281,6 +289,26 @@ if (window.lucide) {
 }
 
 window.addEventListener('load', () => {
-    renderProducts('all');
-    lucide.createIcons();
+    // If a category query is present (from Explore links), apply it
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('cat');
+    if (cat && (cat === 'men' || cat === 'women' || cat === 'child')) {
+        filterProducts(cat);
+    } else {
+        renderProducts('all');
+    }
+    if (window.lucide) lucide.createIcons();
+
+    // Bind add-to-cart inside modal (ensure binding works on both pages)
+    const addToCartBtnLocal = document.querySelector('.add-to-cart');
+    if (addToCartBtnLocal) {
+        addToCartBtnLocal.onclick = () => {
+            cartCount++;
+            const cartCountEl = document.getElementById('cart-count');
+            if (cartCountEl) cartCountEl.innerText = cartCount;
+            alert('Added to cart!');
+            const modalEl = document.getElementById('product-modal');
+            if (modalEl) modalEl.style.display = 'none';
+        };
+    }
 });
